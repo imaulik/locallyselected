@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+    <div class="row" style="float: right;padding-bottom:15px;margin-right: 2px;">
+        <!--<button type="button"  mat-raised-button class="mat-add-btn-color" aria-label="ADD"-->
+        <!--tooltip="ADD" routerLink="">-->
+        <!--ADD-->
+        <!--</button>-->
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <mat-form-field style="background-color: #fff;padding: 20px;">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort (matSortChange)="applySort($event)" matSortDisableClear>
+
+                <ng-container matColumnDef="review">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Review </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.review ? element.review : '-'}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="rating">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rating </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.rating}} </mat-cell>
+                </ng-container>
+
+
+
+                <!--<ng-container matColumnDef="status">-->
+                <!--<mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>-->
+                <!--<mat-cell *matCellDef="let element">-->
+                <!--<button type="button" [disabled]=true mat-raised-button aria-label="Active"-->
+                <!--class="mat-add-btn-color" tooltip="Active" *ngIf="element.id == User_id">-->
+                <!--Active-->
+                <!--</button>-->
+                <!--<button type="button" (click)="changeUserStatus(element.id,8)"-->
+                <!--class="mat-add-btn-color" mat-raised-button aria-label="Active" tooltip="Active"-->
+                <!--*ngIf="element.status.key_text=='Active' && element.id != User_id">-->
+                <!--Active-->
+                <!--</button>-->
+                <!--<button type="button"  (click)="changeUserStatus(element.id,7)"-->
+                <!--class="mat-add-btn-color" style="background-color: #F64846 !important;"-->
+                <!--*ngIf="element.status.key_text=='Inactive'" mat-raised-button aria-label="Inactive" tooltip="Inactive">-->
+                <!--Inactive-->
+                <!--</button>-->
+                <!--</mat-cell>-->
+                <!--</ng-container>-->
+
+                <ng-container matColumnDef="option">
+                    <!--<mat-header-cell *matHeaderCellDef> Option </mat-header-cell>-->
+                    <mat-cell *matCellDef="let element">
+                        <!--<button type="button" mat-raised-button mat-raised-button-->
+                        <!--class="mat-view-btn-color" aria-label="VIEW" tooltip="VIEW" routerLink="">-->
+                        <!--<i class="fa fa-eye"></i>-->
+                        <!--</button>-->
+                        <!--<button type="button" mat-raised-button mat-raised-button-->
+                        <!--class="mat-edit-btn-color" aria-label="EDIT" tooltip="EDIT" routerLink="">-->
+                        <!--<i class="fa fa-edit"></i>-->
+                        <!--</button>-->
+                        <!--<button type="button"  mat-raised-button mat-raised-button-->
+                        <!--class="mat-delete-btn-color" aria-label="DELETE" tooltip="DELETE" *ngIf="element.id != User_id"-->
+                        <!--(click)="openDeleteDialog(element.id)">-->
+                        <!--<i class="fa fa-trash"></i>-->
+                        <!--</button>-->
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator #paginator [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons
+                           (page)="applyPagination($event)">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
+
